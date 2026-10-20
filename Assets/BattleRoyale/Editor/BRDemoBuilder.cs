@@ -260,7 +260,9 @@ public static class BRDemoBuilder
         MakePart(visual, "Left Leg", PrimitiveType.Capsule, new Vector3(-.14f, .32f, 0f), new Vector3(.17f, .38f, .18f), gear);
         MakePart(visual, "Right Leg", PrimitiveType.Capsule, new Vector3(.14f, .32f, 0f), new Vector3(.17f, .38f, .18f), gear);
         MakePart(visual, "Backpack", PrimitiveType.Cube, new Vector3(0f, 1.02f, -.20f), new Vector3(.31f, .38f, .14f), trim);
-        Transform prop = MakePart(visual, "Game Weapon Prop", PrimitiveType.Cube, new Vector3(.26f, 1.12f, .29f),
+        Transform weaponVisual = new GameObject("WeaponVisual").transform;
+        weaponVisual.SetParent(root.transform, false);
+        Transform prop = MakePart(weaponVisual, "Game Weapon Prop", PrimitiveType.Cube, new Vector3(.26f, 1.12f, .29f),
             new Vector3(.09f, .09f, .58f), trim);
         prop.localRotation = Quaternion.Euler(5f, 0f, 0f);
         return root;

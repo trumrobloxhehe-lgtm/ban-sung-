@@ -244,7 +244,7 @@ public static class BRDemoBuilder
             new Vector3(width + .2f, .24f, depth + .2f), trim);
         RemoveColliders(foundation);
         GameObject porch = CreatePrimitive("Front Porch Step", PrimitiveType.Cube,
-            position + new Vector3(0f, .10f, frontZ + .48f), new Vector3(2.25f * scale, .20f, .95f * scale), concrete);
+            position + new Vector3(0f, .10f, frontZ + .48f), new Vector3(2.25f * scale, .20f, .95f * scale), wall);
         RemoveColliders(porch);
         for (int side = -1; side <= 1; side += 2)
         {
@@ -393,7 +393,7 @@ public static class BRDemoBuilder
         MakePart(visual, "Belt", PrimitiveType.Cube, new Vector3(0f, .76f, .015f), new Vector3(.42f, .10f, .29f), dark);
         MakePart(visual, "Pelvis", PrimitiveType.Cube, new Vector3(0f, .65f, 0f), new Vector3(.40f, .22f, .27f), gear);
 
-        Transform head = MakePart(visual, "Head", PrimitiveType.Sphere, new Vector3(0f, 1.63f, .005f),
+        MakePart(visual, "Head", PrimitiveType.Sphere, new Vector3(0f, 1.63f, .005f),
             new Vector3(.31f, .35f, .30f), skin);
         MakePart(visual, "Hair Cap", PrimitiveType.Sphere, new Vector3(0f, 1.80f, -.015f),
             new Vector3(.33f, .16f, .32f), hair);
@@ -401,11 +401,11 @@ public static class BRDemoBuilder
             new Vector3(.055f, .09f, .06f), skin);
         MakePart(visual, "Right Ear", PrimitiveType.Sphere, new Vector3(.16f, 1.63f, 0f),
             new Vector3(.055f, .09f, .06f), skin);
-        MakePart(visual, "Left Eye", PrimitiveType.Sphere, new Vector3(-.075f, 1.67f, .269f),
+        MakePart(visual, "Left Eye", PrimitiveType.Sphere, new Vector3(-.075f, 1.67f, .145f),
             new Vector3(.035f, .035f, .018f), dark);
-        MakePart(visual, "Right Eye", PrimitiveType.Sphere, new Vector3(.075f, 1.67f, .269f),
+        MakePart(visual, "Right Eye", PrimitiveType.Sphere, new Vector3(.075f, 1.67f, .145f),
             new Vector3(.035f, .035f, .018f), dark);
-        MakePart(visual, "Nose", PrimitiveType.Sphere, new Vector3(0f, 1.61f, .285f),
+        MakePart(visual, "Nose", PrimitiveType.Sphere, new Vector3(0f, 1.61f, .165f),
             new Vector3(.045f, .07f, .045f), skin);
 
         Transform leftArm = MakePart(visual, "Left Arm", PrimitiveType.Capsule,

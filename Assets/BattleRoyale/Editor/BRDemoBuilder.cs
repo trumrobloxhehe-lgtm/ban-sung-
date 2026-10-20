@@ -199,14 +199,18 @@ public static class BRDemoBuilder
             new Vector3(width * .25f, height * .36f, thick), wall);
         CreatePrimitive("Metal Roof", PrimitiveType.Cube, position + Vector3.up * (height + .18f * scale),
             new Vector3(width + .7f * scale, .28f * scale, depth + .7f * scale), roof);
-        CreatePrimitive("Front Door", PrimitiveType.Cube, position + new Vector3(0f, 1f * scale, frontZ + .12f),
+        GameObject door = CreatePrimitive("Front Door", PrimitiveType.Cube, position + new Vector3(0f, 1f * scale, frontZ + .12f),
             new Vector3(1.05f * scale, 2f * scale, .12f), wood);
-        CreatePrimitive("Window Left", PrimitiveType.Cube, position + new Vector3(-width * .29f, height * .62f, frontZ + .18f),
+        RemoveColliders(door); // Visual door panel; the opening remains passable.
+        GameObject windowLeft = CreatePrimitive("Window Left", PrimitiveType.Cube, position + new Vector3(-width * .29f, height * .62f, frontZ + .18f),
             new Vector3(1.2f * scale, .85f * scale, .12f), glass);
-        CreatePrimitive("Window Right", PrimitiveType.Cube, position + new Vector3(width * .29f, height * .62f, frontZ + .18f),
+        RemoveColliders(windowLeft);
+        GameObject windowRight = CreatePrimitive("Window Right", PrimitiveType.Cube, position + new Vector3(width * .29f, height * .62f, frontZ + .18f),
             new Vector3(1.2f * scale, .85f * scale, .12f), glass);
-        CreatePrimitive("House Foundation", PrimitiveType.Cube, position + Vector3.up * .12f,
+        RemoveColliders(windowRight);
+        GameObject foundation = CreatePrimitive("House Foundation", PrimitiveType.Cube, position + Vector3.up * .12f,
             new Vector3(width + .2f, .24f, depth + .2f), trim);
+        RemoveColliders(foundation);
     }
 
     private static void CreateWarehouse(Vector3 center, Material wall, Material roof, Material glass)
@@ -229,8 +233,9 @@ public static class BRDemoBuilder
         {
             float layerH = h * (.38f + k * .19f);
             float layerSize = h * (.52f - k * .12f);
-            CreatePrimitive("Pine Canopy", PrimitiveType.Sphere, pos + Vector3.up * layerH,
+            GameObject canopy = CreatePrimitive("Pine Canopy", PrimitiveType.Sphere, pos + Vector3.up * layerH,
                 new Vector3(layerSize, h * .32f, layerSize), leaves);
+            RemoveColliders(canopy); // Leaves should not block player movement; trunks still have colliders.
         }
     }
 
@@ -300,6 +305,12 @@ public static class BRDemoBuilder
     private static void CreateRoad(Vector3 pos, Vector3 scale, Material mat)
     {
         CreatePrimitive("Road", PrimitiveType.Cube, pos, scale, mat);
+    }
+
+    private static void RemoveColliders(GameObject go)
+    {
+        foreach (Collider collider in go.GetComponentsInChildren<Collider>(true))
+            if (collider != null) Object.DestroyImmediate(collider);
     }
 
     private static GameObject CreatePrimitive(string name, PrimitiveType type, Vector3 position, Vector3 scale, Material material)

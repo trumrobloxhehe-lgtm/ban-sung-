@@ -19,7 +19,7 @@ This is a playable prototype foundation, not a finished production game. The gen
 
 1. GitHub: choose **Code -> Download ZIP**, extract the repository, or clone/pull with GitHub Desktop.
 2. Unity Hub -> **Add project from disk** -> select the extracted repository folder (it contains Assets, Packages, and ProjectSettings).
-3. Open using **Unity 6.6 (6000.6.6f1)**. Let Package Manager install Input System and wait for compilation.
+3. Open using **Unity 6.6 (6000.6.6f1)**. Let Package Manager install Input System and wait for compilation. If Unity asks to enable the new input backend, accept and restart the Editor. If keyboard/mouse input stays inactive, open Edit -> Project Settings -> Player -> Other Settings -> Active Input Handling, select **Input System Package (New)**, and restart the Editor.
 4. On the Unity menu select **Battle Royale -> Build Last Light Demo**.
 5. The scene is generated and saved as Assets/BattleRoyale/Scenes/LastLightDemo.unity.
 6. Press Play.
@@ -39,7 +39,7 @@ This is a playable prototype foundation, not a finished production game. The gen
 
 The code repository does not include third-party model files. For realistic people, import a rigged Humanoid model and animations that you have permission to use.
 
-1. Visit Mixamo or use a licensed human asset you already own.
+1. Visit [Mixamo](https://www.mixamo.com/) or use a licensed human asset you already own.
 2. Download the character as FBX for Unity with its skin. For animation, download Idle, Walk and optionally Run clips.
 3. Put the FBX files under the local project's Assets folder. Select the character FBX -> Inspector -> Rig -> set **Animation Type: Humanoid** -> Apply. Confirm the Avatar is valid.
 4. Configure separate animation FBX files as Humanoid too.

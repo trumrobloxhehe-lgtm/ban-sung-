@@ -18,6 +18,7 @@ public static class BRDemoBuilder
         EnsureFolder(Root);
         EnsureFolder(Root + "/Scenes");
         EnsureFolder(Root + "/Materials");
+        EnsureFolder(Root + "/Generated");
         Random.InitState(20261020);
         EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
 
@@ -301,6 +302,14 @@ public static class BRDemoBuilder
     private static Mesh GetPineConeMesh()
     {
         if (pineConeMesh != null) return pineConeMesh;
+        const string meshPath = Root + "/Generated/SharedPineCone.asset";
+        Mesh stored = AssetDatabase.LoadAssetAtPath<Mesh>(meshPath);
+        if (stored != null)
+        {
+            pineConeMesh = stored;
+            return pineConeMesh;
+        }
+
         const int sides = 9;
         Vector3[] vertices = new Vector3[sides + 2];
         for (int i = 0; i < sides; i++)
@@ -319,14 +328,15 @@ public static class BRDemoBuilder
             triangles[t++] = sides;
             triangles[t++] = next;
             triangles[t++] = sides + 1;
-            triangles[t++] = next;
             triangles[t++] = i;
+            triangles[t++] = next;
         }
         pineConeMesh = new Mesh { name = "Shared Low Poly Pine Cone" };
         pineConeMesh.vertices = vertices;
         pineConeMesh.triangles = triangles;
         pineConeMesh.RecalculateNormals();
         pineConeMesh.RecalculateBounds();
+        AssetDatabase.CreateAsset(pineConeMesh, meshPath);
         return pineConeMesh;
     }
 

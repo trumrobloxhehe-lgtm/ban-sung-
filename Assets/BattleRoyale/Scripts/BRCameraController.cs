@@ -38,7 +38,7 @@ public sealed class BRCameraController : MonoBehaviour
 
         Quaternion rotation = Quaternion.Euler(pitch, yaw, 0f);
         Vector3 focus = target.position + focusOffset;
-        Vector3 offset = -rotation * Vector3.forward * distance;
+        Vector3 offset = rotation * (Vector3.back * distance);
         Vector3 desired = focus + offset;
         if (Physics.SphereCast(focus, .22f, offset.normalized, out RaycastHit hit, offset.magnitude,
                 Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
